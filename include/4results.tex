@@ -70,13 +70,19 @@ The elliptical PHD filter manages to keep track of the multiple targets moving t
 
 \subsubsection{Rectangular Filter}
 
-During the scenario two non-stationary car are present. One of them (from now on referred to as Car 1) is present at the start of the scenario near the ego position, and drives in a more or less straight path before disappearing from sensor view. In total, Car 1 is present for 35 frames. The other one (Car 2) appears after approximately 20 frames, drives towards the ego car and later performs a $90^{\circ}$ turn, after which it drives away from the ego car and disappears from sensor view.  
+During the scenario two non-stationary car are present. One of them (from now on referred to as Car 1) is present at the start of the scenario near the ego position, and drives in a more or less straight path before disappearing from sensor view. In total, Car 1 is present for 35 frames. The other one (Car 2) appears after approximately 20 frames, drives towards the ego car and later performs a $90^{\circ}$ turn, after which it drives away from the ego car and disappears from sensor view. In total, Car 2 is visible for 55 frames. 
+
+Both cars are instantly detected by the PHD filter. Estimation of size, as well as position, velocity and heading all appear to be reasonable and follow the measurements in a steady manner. Estimation of size changes very little during the scenario, even though at some instances one only side of each car is seen. 
+
+The rectangular PHD filter was tested with both an EKF and UKF when performing prediction and 
 
 \todo{describe some interesting rectangular filter situations}
 
 DUDE!
 
 \section{Benefits of using Extended Targets}
+Since no reference data is available evaluation of the algorithm performance 
+
 
 \begin{figure}[ht]
     \begin{subfigure}{0.48\textwidth}
