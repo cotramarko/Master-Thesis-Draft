@@ -1,0 +1,85 @@
+\begin{center}
+  \captionof{figure}{A flowchart detailing a single iteration of the algorithm.}
+  % setting the typeface to sans serif and the font size to small
+  % the scope local to the environment
+  \sffamily
+  \footnotesize
+  \begin{tikzpicture}[auto,
+    %decision/.style={diamond, draw=black, thick, fill=white,
+    %text width=8em, text badly centered,
+    %inner sep=1pt, font=\sffamily\small},
+    block_center/.style ={rectangle, draw=black, thick, fill=white,
+                          text width=8em, text centered, minimum height=4em},
+    block_left/.style ={rectangle, draw=black, thick, fill=white,
+                        text width=16em, text ragged, minimum height=4em, inner sep=6pt},
+    block_noborder/.style ={rectangle, draw=none, thick, fill=none,
+                            text width=22em, text centered, minimum height=1em},
+    block_assign/.style ={rectangle, draw=black, thick, fill=white,
+                          text width=18em, text ragged, minimum height=3em, inner sep=6pt},
+    block_lost/.style ={rectangle, draw=black, thick, fill=white,
+                        text width=16em, text ragged, minimum height=3em, inner sep=6pt},
+    line/.style ={draw, thick, -latex', shorten >=0pt}]
+    % outlining the flowchart using the PGF/TikZ matrix funtion
+    \matrix [column sep=-10mm,row sep=3mm] {
+        \node [block_noborder] (e) {}; \\
+        % Lidar Scan
+        \node [block_center] (lidarScan) {Lidar Scan}; \\
+        % 150,000 points 
+        \node [block_noborder] (150p) {$\sim$ $150,000$ points}; \\
+        % Remove Static Map
+        \node [block_center] (staticMap) {Static Map Removal}; \\
+        % 30,000 points
+        \node [block_noborder] (30p) {$\sim$ $20,000$ points}; \\
+        % Clustering 
+        \node [block_center] (clustering) {Clustering}; \\
+        % Potential dynamic objects 
+        \node [block_noborder] (potential) {$\sim$ $10,000$ points\\ $20$-$30$ clusters: Potential dynamic objects}; \\
+        % Neural Network
+        \node [block_center] (nn) {Neural Network}; \\
+        % Tagged Objects 
+        \node [block_noborder] (ped) {Pedestrians, crowds, cyclists, unknown targets}; 
+            &
+            \node [block_noborder] (cars) {cars}; \\
+        % Ellip PHD & Car pre-processing
+        \node [block_center] (ellip) {Elliptical PHD filter};
+            &
+            \node [block_center] (pre) {Car Cluster Pre-processing}; \\
+        % Estimated shape & state Corner Point   
+        \node [block_noborder] (e) {}; \\
+        \node [block_noborder] (ellipState) {Elliptical shape, size \& state estimation};
+            & 
+            \node [block_noborder] (cp) {Viewed width \& length, corner point}; \\
+        % Car PHD
+            &
+            \node [block_center] (rect) {Rectangular PHD filter}; \\
+        \node [block_noborder] (e) {};
+            &
+            \node [block_noborder] (rectState) {Rectangular shape, size \& state estimation}; \\
+        % Estimated Targets 
+        \node [block_center] (targets) {Targets}; \\
+    };% end matrix
+    % connecting nodes with paths
+    \begin{scope}[every path/.style=line]
+      % paths for enrollemnt rows
+      %\path (referred)   -- (excluded1);
+        \path (lidarScan)   -- (150p);
+        \path (150p)        -- (staticMap);
+        \path (staticMap)   -- (30p);
+        \path (30p)         -- (clustering);
+        \path (clustering)  -- (potential);
+        \path (potential)   -- (nn);
+        \path (nn)          -- (ped);
+        % Left 
+        \path (ped)         -- (ellip);
+        \path (ellip)       -- (ellipState);
+        \path (ellipState)  -- (targets);
+        % Right 
+        \path (nn)          -| (cars);
+        \path (cars)        -- (pre);
+        \path (pre)         -- (cp);
+        \path (cp)          -- (rect);
+        \path (rect)        -- (rectState);
+        \path (rectState)   |- (targets);
+    \end{scope}
+  \end{tikzpicture}
+\end{center}

@@ -1,0 +1,9 @@
+lidar / Lidar / LIDAR
+radar / Radar / RADAR
+gps / GPS
+single-target / single target
+pointcloud / point-cloud / point cloud
+datapoints / data points
+timeframe / time frame / time-frame
+timestep / time step / time-step
+dataset / data set / data-set

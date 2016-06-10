@@ -1,0 +1,48 @@
+
+
+
+
+
+
+
+
+\chapter{Introduction}
+\lettrine[lines=4, loversize=-0.1, lraise=0.1]{A}{utonomous cars and active safety systems} have over the recent years transitioned from the realm of thought experiments and science fiction concepts into reality. All major automobile manufacturers are developing some form of autonomous drive technology, examples of this being the 2017 Volvo Drive Me program and Tesla Autopilot functionality. The increasing interest in and demand of autonomous vehicles has also pushed the development of vehicle sensor technology, increasing vehicle capability to better sense the surrounding environment. The key to successfully integrate and fuse together different sensor technologies is the ability to determine robustness and performance of both detection, identification and tracking of non-stationary objects of interest; such as pedestrians, cars and cyclists. This is currently an expensive process, involving the use of high-precision GPS systems attached to targets of interests around the autonomous vehicle. In order to test sensor performance a cost effective and fast system of generating reference data (also called ground truth) is necessary, preferably enabling real-time usage for testing autonomous vehicle.
+
+This problem has increased interest in lidar sensors. A lidar sensor offers high accuracy measurements of range and bearing of the sensor's surrounding area, making it possible to construct a point cloud of the environment around a vehicle when mounted with a lidar. lidar is frequently used in autonomous vehicles, such as the Google autonomous car. Unfortunately, a high cost and relatively large size has limited its usefulness for consumer offerings of autonomous vehicles. The lidar sensor might however offer the possibility of serving as a comparatively cheap and easy to use reference system for test and evaluation of autonomous cars. Instead of equipping objects of interest around the autonomous car with expensive GPS systems, the car itself could be equipped with a lidar sensor while still offering accurate enough ground truth for sensor evaluation.
+
+This thesis investigates and evaluates how different methods can be used and integrated in order to provide a accurate reference system solely using a lidar sensor. Target detection, identification and tracking are of interest, with a focus on finding robust and computationally effective methods. Necessary modifications to existing and previously used methods for other sensor types, such as radar and camera, are investigated in order to enable their usage with lidar sensor data.  \todo{Include something about iTransit and ÅF here? Perhaps bring up the Asta Zero crossing as a proving ground for this proposed solution to accurate tracking?}
+
+\section{Thesis Objectives}
+The objective behind the work presented in this thesis is to identify, investigate and evaluate methods useful for detecting, tracking and identifying dynamic objects of interest around an autonomous car by using lidar data. The explicit goals are formulated as implementing a system capable of:
+
+\begin{itemize}
+    \item Identifying and classifying objects of interest: pedestrians, cars \& cyclists. 
+    \item Detecting and accurately tracking multiple objects of interest.
+    \item Handling objects with multiple measurements associated to them.
+    \item Removing uninformative measurements.
+    \item Scaling well with additional objects and measurements. 
+    \item Capable of real-time implementation without significant changes to chosen algorithms. 
+\end{itemize}
+
+\subsection{Thesis Delimitations}
+\todo{What did we choose to ignore?}
+Given the wide range of thesis objectives, several delimitations were necessary in order to fulfill the objectives within a time-frame of 20 weeks. Every delimitation was chosen in such a way that the work presented in this thesis could serve as a basis for further extensions, with less imposed delimitations. The following delimitations are present in this work:
+
+\begin{itemize}
+    \item All objects of interest are seen as moving on perfectly flat horizontal plane. As such, no vertical motion is considered. 
+    \item Spatial extent (shape and size) is only estimated in regards to the length and width of objects, not height.
+    \item The position of the Lidar sensor is considered to be fixed, with no motion or rotation. 
+    \item Prior information of the surrounding environment is available, containing information of stationary objects such as houses, walls etc. 
+    \item The capability of identifying objects was limited to three types: cars, pedestrians and cyclists. 
+\end{itemize}
+
+\subsection{Thesis Limitations}
+\todo{What was out of our control?}
+The work presented in this thesis is subject to several limitations, mainly connected to how the presented results are evaluated. Due to scheduling difficulties, data from a controlled test environment in the form of a crossing was not available. As such, no numeric reference measure (attained from a high precision GPS-system) is available for evaluating the proposed algorithm. Consequently, there is no way to explicitly compare the accuracy of the algorithm presented in this work to that of a high precision GPS-system.
+
+The scenario used for evaluating the proposed algorithm was attained from the public KiTTi dataset. Efforts were made to replicate conditions from the test environment. This resulted in choosing data recorded at a college campus, where the lidar sensor stood still while several groups of pedestrians, two cars and two cyclists moved across the campus. From this scenario, a  Evaluation of the algorithm's capability to identify and track objects was performed by visual inspection. 
+
+\section{Major Contributions}
+
+\section{Thesis Outline}
